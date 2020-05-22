@@ -20,7 +20,7 @@ class BurgerBuilder extends Component {
     
     state = {
         ingredients: null,
-        totalPrice: 4,
+        price: 4,
         purchasable: false,
         purchasing: false,
         loading: false,
@@ -69,7 +69,7 @@ class BurgerBuilder extends Component {
         for ( let i in this.state.ingredients) {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
-        queryParams.push('price=' + this.state.totalPrice);
+        queryParams.push('price=' + this.state.price);
         const queryString = queryParams.join('&');
         
         this.props.history.push({
@@ -86,9 +86,9 @@ class BurgerBuilder extends Component {
         };
         updatedIngredients[type] = updatedCount;
         const priceAddition = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
+        const oldPrice = this.state.price;
         const newPrice = oldPrice + priceAddition;
-        this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
+        this.setState({price: newPrice, ingredients: updatedIngredients});
         this.updatePurchaseState(updatedIngredients);
 
 
@@ -105,9 +105,9 @@ class BurgerBuilder extends Component {
         };
         updatedIngredients[type] = updatedCount;
         const priceSubstraction = INGREDIENT_PRICES[type];
-        const oldPrice = this.state.totalPrice;
+        const oldPrice = this.state.price;
         const newPrice = oldPrice - priceSubstraction;
-        this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
+        this.setState({price: newPrice, ingredients: updatedIngredients});
         this.updatePurchaseState(updatedIngredients);
 
     }
@@ -135,7 +135,7 @@ class BurgerBuilder extends Component {
         disabled={disabledInfo}
         purchasable={this.state.purchasable}
         ordered={this.purchaseHandler}
-        price={this.state.totalPrice}
+        price={this.state.price}
      />
      </Aux>
      );
@@ -143,7 +143,7 @@ class BurgerBuilder extends Component {
         purchaseCanceled={this.purchaseCancelHandler} 
         purchaseContinued={this.purchaseContinueHandler} 
         ingredients={this.state.ingredients} 
-        price={this.state.totalPrice}
+        price={this.state.price}
         />;
     
     };
