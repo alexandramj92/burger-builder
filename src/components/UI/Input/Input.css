@@ -18,7 +18,6 @@
     padding: 6px 10px;
     display: block;
     width: 100%;
-    height: 40px;
     box-sizing: border-box;
 }
 
@@ -29,6 +28,5 @@
 
 .Invalid {
     border: 1px solid red;
-    background-color: salmon;
-    
+    background-color: #FDA49A;
 }
